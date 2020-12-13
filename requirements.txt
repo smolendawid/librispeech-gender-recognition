@@ -1,3 +1,6 @@
 numpy
 matplotlib
 scikit-learn
+soundfile
+pandas
+scipy
