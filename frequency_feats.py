@@ -6,7 +6,6 @@ from scipy import signal
 import numpy as np
 
 
-
 def fir_filter(data, cutoff, fs, order=3, highpass=False):
     nyq = 0.5 * fs
     cutoff_nyq = cutoff / nyq
@@ -29,14 +28,14 @@ def custom_fft(y, fs):
     return xf, vals
 
 
-def freq_feats(audio, fs):
+def freq_feats(audio, fs, new_fs=560):
 
     audio = fir_filter(audio, 280, fs, order=15, highpass=False)
-    number_of_samples = round(len(audio) * float(560) / fs)
+    number_of_samples = round(len(audio) * float(new_fs) / fs)
     audio = signal.resample(audio, number_of_samples)
 
-    x, spec = custom_fft(audio, fs)
-    bin_means = binned_statistic(x, spec, bins=fs, )[0]
+    x, spec = custom_fft(audio, new_fs)
+    bin_means = binned_statistic(x, spec, bins=new_fs, )[0]
 
     return bin_means
 

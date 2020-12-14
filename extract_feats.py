@@ -17,9 +17,9 @@ def extract_features(audio, fs):
     std = bin_means.std()
     median = np.median(bin_means)
     kurt = stats.kurtosis(bin_means)
-    skew = stats.kurtosis(bin_means)
+    skew = stats.skew(bin_means)
     p25 = np.percentile(bin_means, 25)
-    p75 = np.percentile(bin_means, 25)
+    p75 = np.percentile(bin_means, 75)
     iqr = p75 - p25
     ent = stats.entropy(bin_means)
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     raw_data_root = os.path.join(project_root(), 'data', 'raw', 'LibriSpeech')
     speakers_filepath = os.path.join(raw_data_root, 'SPEAKERS.TXT')
 
-    results_filepath = os.path.join(project_root(), 'data', 'processed', f'librispeech-gender-feats={chosen_set}.csv')
+    results_filepath = os.path.join(project_root(), 'data', 'processed', f'librispeech-gender-feats-{chosen_set}.csv')
 
     audio_paths, labels = get_librispeech_paths(raw_data_root, speakers_filepath, contains=chosen_set)
 
