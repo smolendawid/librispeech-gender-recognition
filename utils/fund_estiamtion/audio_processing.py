@@ -21,7 +21,7 @@ import logging
 from os import remove, sep
 import subprocess
 
-
+import soundfile as sf
 
 def audio_read(audioFilePath, formatsox=False):
     """
@@ -50,7 +50,10 @@ def audio_read(audioFilePath, formatsox=False):
         [sr, sig] = wavread(tmpFile)
         remove(tmpFile)
     else:
-        [sr, sig] = wavread(audioFilePath)
+        try:
+            [sr, sig] = wavread(audioFilePath)
+        except ValueError:
+            [sig, sr] = sf.read(audioFilePath)
 
     return sr, sig
 

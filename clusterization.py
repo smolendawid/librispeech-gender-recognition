@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     data = dev_data.dropna()
 
-    columns = ['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent']
+    columns = ['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent', 'meanfun', 'maxfun', 'minfun']
 
     values = data[columns].values
 

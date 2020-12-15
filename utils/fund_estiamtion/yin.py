@@ -22,7 +22,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import fftconvolve
 from os import sep
-from audio_processing import *
+from utils.fund_estiamtion.audio_processing import *
 import time
 
 
@@ -166,7 +166,7 @@ def compute_yin(sig, sr, dataFileName=None, w_len=512, w_step=256, f0_min=100, f
     :rtype: tuple
     """
 
-    print('\t- Yin: compute yin algorithm')
+    # print('\t- Yin: compute yin algorithm')
     tau_min = int(sr / f0_max)
     tau_max = int(sr / f0_min)
 
@@ -263,6 +263,8 @@ def main(audioFileName="out.wav", w_len=1024, w_step=256, f0_min=70, f0_max=200,
         ax4.set_xlabel('Time (seconds)')
         plt.show()
         print(pitches)
+        print(max(pitches))
+        print(harmonic_rates)
 
 
 if __name__ == '__main__':
