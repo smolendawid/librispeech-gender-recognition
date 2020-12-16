@@ -8,7 +8,7 @@ from scipy import stats
 from utils.path_utils import project_root
 from utils.get_librispeech_paths import get_librispeech_paths
 from frequency_feats import freq_feats
-from utils.fund_estiamtion.yin import *
+from utils.fund_estiamtion.yin import compute_yin
 
 
 def extract_features(audio, fs):

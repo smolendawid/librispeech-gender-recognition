@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from utils.path_utils import project_root
 from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import DBSCAN, KMeans
 
 from sklearn.manifold import TSNE
 import plotly.express as px
@@ -19,6 +19,7 @@ if __name__ == '__main__':
     data = dev_data.dropna()
 
     columns = ['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent', 'meanfun', 'maxfun', 'minfun']
+    # columns = ['iqr', 'meanfun']
 
     values = data[columns].values
 
@@ -26,7 +27,8 @@ if __name__ == '__main__':
     scaler.fit(values)
     values = scaler.transform(values)
 
-    model = DBSCAN(eps=1.4, min_samples=5)
+    model = DBSCAN(eps=0.8, min_samples=4)
+    model = KMeans(n_clusters=10)
     clusters = model.fit_predict(values)
 
     data['clusters'] = clusters
@@ -34,6 +36,7 @@ if __name__ == '__main__':
     perplexity = 20
     tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
     feats2d = tsne.fit_transform(values)
+    # feats2d = data[columns].values
 
     data['x'] = feats2d[:, 0]
     data['y'] = feats2d[:, 1]

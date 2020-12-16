@@ -10,7 +10,7 @@ from utils.path_utils import project_root
 if __name__ == '__main__':
     path = os.path.join(project_root(), 'data', 'processed', 'librispeech-gender-feats-test-clean.csv')
     data = pd.read_csv(path)
-    columns = ['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent']
+    columns = ['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent', 'meanfun', 'maxfun', 'minfun']
 
     data = data.dropna()
 
