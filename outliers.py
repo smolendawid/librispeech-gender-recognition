@@ -28,13 +28,14 @@ if __name__ == '__main__':
 
     values = data[columns].values
 
-    clf = LocalOutlierFactor(n_neighbors=20)
-    clf.fit_predict(values)
-    lof = clf.negative_outlier_factor_
-    threshold = -1.5
-    outliers = data[lof < threshold]
-    data['outlier'] = np.where(lof < threshold, 'True', 'False')
-    print(len(outliers))
+    clf = LocalOutlierFactor(n_neighbors=10) #, contamination=0.01
+    lof = clf.fit_predict(values)
+    lof_values = clf.negative_outlier_factor_
+    data['outlier'] = np.where(lof == -1, 'True', 'False')
+    data['lof_factor'] = lof_values
+    data_sorted = data.sort_values('lof_factor')
+    print((data['outlier'].value_counts()))
+
 
     perplexity = 20
     tsne = TSNE(n_components=2, perplexity=perplexity, random_state=42)
