@@ -25,18 +25,25 @@ def extract_features(audio, fs):
     ent = stats.entropy(bin_means)
 
     pitches, harmonic_rates, argmins, times = \
-        compute_yin(audio, fs, w_len=1024, w_step=256, f0_min=20, f0_max=280, harmo_thresh=0.3)
-    funs = [p/1000 for p, h in zip(pitches, harmonic_rates) if p != 0.]  # rescale to kHz
+        compute_yin(audio, fs, w_len=4096, w_step=1024, f0_min=10, f0_max=280, harmo_thresh=0.6)
+    funs = [p/1000 for p, h in zip(pitches, harmonic_rates) if p > 0.]  # rescale to kHz
     meanfun = np.mean(funs)
     maxfun = np.max(funs)
     minfun = np.min(funs)
 
-    return mean, std, median, kurt, skew, p25, p75, iqr, ent, meanfun, maxfun, minfun
+    duration = len(audio)/fs
+
+    return mean, std, median, kurt, skew, p25, p75, iqr, ent, meanfun, maxfun, minfun, duration
+
+
+def extract_speaker_id(rec_path):
+    return rec_path.split(os.sep)[-3]
 
 
 if __name__ == '__main__':
     # chosen_set = 'train-clean-100'
-    chosen_set = 'test-clean'
+    # chosen_set = 'test-clean'
+    chosen_set = 'dev-clean'
 
     if os.path.isdir(os.path.join(project_root(), 'data', 'raw', 'LibriSpeech')):
         raw_data_root = os.path.join(project_root(), 'data', 'raw', 'LibriSpeech')
@@ -53,10 +60,11 @@ if __name__ == '__main__':
     for i, (path, label) in tq:
         audio, fs = sf.read(path)
         row = extract_features(audio, fs)
+        row += (extract_speaker_id(path),)
         feats_rows.append(row)
 
     results = pd.DataFrame(feats_rows, columns=['mean', 'std', 'median', 'kurt', 'skew', 'p25', 'p75', 'iqr', 'ent',
-                                                'meanfun', 'maxfun', 'minfun'])
+                                                'meanfun', 'maxfun', 'minfun', 'duration', 'spk_id'])
     results['path'] = ['/'.join(p.split('/')[-4:]) for p in audio_paths]
     results['label'] = labels
 
