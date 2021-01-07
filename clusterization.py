@@ -28,7 +28,7 @@ if __name__ == '__main__':
     values = scaler.transform(values)
 
     model = DBSCAN(eps=0.8, min_samples=4)
-    model = KMeans(n_clusters=10)
+    # model = KMeans(n_clusters=10)
     clusters = model.fit_predict(values)
 
     data['clusters'] = clusters
