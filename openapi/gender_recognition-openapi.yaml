@@ -27,7 +27,7 @@ paths:
               type: object
               properties:
                 audioFile:
-                  description: "upload an audio file no longer than 4 seconds in wav format"
+                  description: "upload an audio file no shorter than 2s and not longer than 4s in wav format"
                   type: string
                   format: binary
       responses:
@@ -43,3 +43,7 @@ paths:
                   probability:
                     type: number
                     format: float
+        '412':
+          description: Wrong file length
+        '415':
+          description: Wrong format
