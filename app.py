@@ -1,5 +1,4 @@
 import connexion
-import librosa
 import numpy as np
 import soundfile as sf
 from checks import check_duration, check_format
@@ -22,6 +21,4 @@ app = connexion.FlaskApp(__name__, port=9090, specification_dir='openapi/')
 app.add_api('gender_recognition-openapi.yaml')
 app.run()
 
-# ? stereo
-
-# unit tests for all outputs and possibe errors
+# unit tests for all outputs and possible errors
