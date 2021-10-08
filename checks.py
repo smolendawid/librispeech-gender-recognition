@@ -1,4 +1,3 @@
-from posixpath import abspath
 from flask import abort
 
 
