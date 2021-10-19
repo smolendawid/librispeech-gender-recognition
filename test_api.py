@@ -41,10 +41,3 @@ def test_too_short_wave():
     path = 'data/raw/other/Short.wav'
     response = voice_gender_client(path=path)
     assert response.status_code == 412
-
-
-# def test(): 
-#     # path = 'data/raw/other/Gabi mp3.mp3'
-#         path = os.path.join('data/raw/other' + '/' + path)
-#         response = voice_gender_client(path=path)
-#         assert response.status_code == 200
