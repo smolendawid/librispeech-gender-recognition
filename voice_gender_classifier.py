@@ -31,12 +31,11 @@ class VoiceGenderClassifier:
         feats = np.array(feats)
         feats = feats[np.newaxis, :-1]
         result = self.model.predict_proba(feats)
-        if result[0, 1] > 0.5:
-            return 1
+        if result[0, 1] >= 0.5:
+            return "Male", result[0, 1]
         if result[0, 1] < 0.5:
-            return 0
-        #
-        # return result[0, 1]
+            return "Female", result[0, 1]
+        
 
 
 if __name__ == '__main__':
