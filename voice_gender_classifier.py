@@ -27,11 +27,10 @@ class VoiceGenderClassifier:
         feats = feats[np.newaxis, :-1]
         result = self.model.predict_proba(feats)
         if result[0, 1] >= 0.5:
-            return 1
+            return "Male", result[0, 1]
         if result[0, 1] < 0.5:
-            return 0
-
-
+            return "Female", result[0, 1]
+          
 if __name__ == '__main__':
     audio_path = 'data/raw/LibriSpeech/dev-clean/174/50561/174-50561-0000.flac'
     model_path = 'model_store/RandomForest.joblib'

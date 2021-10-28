@@ -9,3 +9,4 @@ tqdm
 seaborn
 joblib
 librosa
+connexion[swagger-ui]
