@@ -10,3 +10,4 @@ seaborn
 joblib
 librosa
 connexion[swagger-ui]
+gunicorn
