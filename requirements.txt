@@ -1,4 +1,3 @@
-numpy
 matplotlib
 scikit-learn
 soundfile
@@ -11,3 +10,4 @@ joblib
 librosa
 connexion[swagger-ui]
 gunicorn
+numpy==1.20
