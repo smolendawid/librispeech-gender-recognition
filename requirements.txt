@@ -4,3 +4,8 @@ scikit-learn
 soundfile
 pandas
 scipy
+jupyterlab
+tqdm
+seaborn
+joblib
+librosa

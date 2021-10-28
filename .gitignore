@@ -3,3 +3,6 @@
 **/__pycache__
 results/
 data/
+notebooks/.ipynb_checkpoints
+model_store/*
+!model_store/.gitkeep
