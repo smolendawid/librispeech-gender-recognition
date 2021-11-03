@@ -11,3 +11,4 @@ librosa
 connexion[swagger-ui]
 gunicorn
 numpy==1.20
+flask_cors
