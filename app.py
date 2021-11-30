@@ -1,5 +1,5 @@
 import connexion
-from voice_gender_classifier import VoiceGenderClassifier
+from utils.voice_gender_classifier import VoiceGenderClassifier
 from api.audio_file_processing import processing
 from flask_cors import CORS
 
