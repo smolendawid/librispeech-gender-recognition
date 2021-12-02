@@ -14,7 +14,7 @@ def voice_gender_client(path):
         'audioFile': (path, open(path, 'rb'), 'audio' + '/' + file_format),
     }
 
-    response = requests.post('https://enigmatic-badlands-41342.herokuapp.com/v1.0/recognition', files=files)
+    response = requests.post('http://localhost:9090/v1.0/recognition', files=files)
     return response
 
 
