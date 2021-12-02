@@ -5,7 +5,7 @@ info:
   title: Gender recognition
   version: "1.0"
 servers:
-  - url: http://localhost:9090/v1.0
+  - url: http://localhost:5000/v1.0
 
 tags:
   - name: Gender recognition
@@ -47,3 +47,5 @@ paths:
           description: Wrong file length
         '415':
           description: Wrong format
+        '404':
+          description: Empty value

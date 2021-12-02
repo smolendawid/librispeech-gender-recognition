@@ -1,6 +1,7 @@
 import connexion
-from voice_gender_classifier import VoiceGenderClassifier
-from audio_file_processing import processing
+from utils.voice_gender_classifier import VoiceGenderClassifier
+from api.audio_file_processing import processing
+from flask_cors import CORS
 
 
 def recognize(audioFile):
@@ -8,9 +9,8 @@ def recognize(audioFile):
     return response
 
 
-# if __name__ == '__main__':
 model_path = 'model_store/RandomForest.joblib'
 vgc = VoiceGenderClassifier(model_path, fs=16000)
-app = connexion.FlaskApp(__name__, port=9090, specification_dir='openapi/')
+app = connexion.FlaskApp(__name__, specification_dir='api/openapi/')
 app.add_api('gender_recognition-openapi.yaml')
-app.run()
+CORS(app.app)

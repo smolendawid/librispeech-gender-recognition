@@ -1,7 +1,6 @@
 import pytest
 import requests
 
-
 def voice_gender_client(path):
 
     headers = {

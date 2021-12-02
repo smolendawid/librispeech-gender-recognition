@@ -1,6 +1,6 @@
-from logging_messages import info
 import soundfile as sf
-from checks import check_duration, check_format
+from api.logging_messages import info
+from api.checks import check_duration, check_format
 
 
 def processing(audioFile, vgc):

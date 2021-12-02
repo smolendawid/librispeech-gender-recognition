@@ -1,5 +1,5 @@
 from flask import abort
-from logging_messages import info, error
+from api.logging_messages import info, error
 
 
 def check_format(audioFile):
